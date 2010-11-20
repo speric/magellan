@@ -28,7 +28,15 @@
 </script>
 
 <div id="map_canvas" style="width:960px; height:80%"></div>
-<%= link_to 'Add A New Venue', new_venue_path %>
+
+<p><%= link_to 'Add A New Venue', new_venue_path %></p>
+
+<% @venues.each do |v| %>
+	<p>
+		<%= link_to v.name, venue_path(v.id) %><br/>
+		<%= h v.address %>
+	</p>
+<% end %>
 <script>
 	initialize();
 </script>

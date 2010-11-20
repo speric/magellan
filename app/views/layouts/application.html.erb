@@ -6,7 +6,7 @@
 			<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 			<style type="text/css">
 			  html { height: 100% }
-			  body { height: 100%; margin: 20px; padding: 0px; font-family: Arial; font-size: 18px; }
+			  body { height: 100%; margin: 5px; padding: 0px; font-family: Arial; font-size: 18px; letter-spacing: -1px; }
 			  #map_canvas { height: 100% }
 				a, a:visited{
 					color: #4096EE;
@@ -21,7 +21,8 @@
 		</head>
 		<body>
 			<div style="width: 100%;" align="center">
-				<div style="width: 960px;" align="left">
+				<div style="width: 960px; padding-bottom: 25px;" align="left">
+					<div style="font-size:28px; padding-bottom: 5px;"><a href="/">magellan</a></div>
 					<%= yield @content %>
 				</div>
 			</div>

@@ -2,6 +2,7 @@ include Geokit::Geocoders
 
 class Venue < ActiveRecord::Base
   acts_as_mappable
+  xss_terminate
   
   validates_presence_of :name
   validates_presence_of :address
