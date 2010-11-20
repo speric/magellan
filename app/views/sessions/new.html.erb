@@ -1,0 +1,8 @@
+<% form_for @user, :url => sessions_path do |f| %>
+	<p>
+		<%= f.label :email_address %><br/>
+		<%= f.text_field :email_address, :size => 35 %><br />
+	</p>
+	
+	<%= submit_tag "Login" %>
+<% end %>

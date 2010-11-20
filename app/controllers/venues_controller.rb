@@ -1,4 +1,6 @@
 class VenuesController < ApplicationController
+  before_filter :authorize_user
+  
   def index
     @venues = Venue.find(:all)
   end

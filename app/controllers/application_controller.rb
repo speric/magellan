@@ -4,7 +4,12 @@
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
-
-  # Scrub sensitive parameters from your log
-  # filter_parameter_logging :password
+  
+  private
+  
+  def authorize_user
+    if User.find_by_email_address(session[:magellan_email_address]).nil?
+      redirect_to :controller => "sessions", :action => "new"
+    end
+  end
 end
