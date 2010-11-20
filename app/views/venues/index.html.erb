@@ -16,18 +16,34 @@
   function initialize() {
     var latlng = new google.maps.LatLng(40.810256, -73.379245);
     var myOptions = {
-      zoom: 13,
+      zoom: 12,
       center: latlng,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    var map = new google.maps.Map(document.getElementById("map_canvas"),
-        myOptions);
-  }
+    var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+				<% @venues.each do |v| %>
+					var latlong_<%= v.id %> = new google.maps.LatLng(<%= v.latlong %>);
+					var marker_<%= v.id %> = new google.maps.Marker({
+					      position: latlong_<%= v.id %>, 
+					      map: map, 
+					      title:"<%= v.name %>"
+					  });
+						var contentString_<%= v.id %> = "<%= v.name %><br/><%= v.address %>";
+						var infowindow_<%= v.id %> = new google.maps.InfoWindow({
+						    content: contentString_<%= v.id %>
+						});
 
+						google.maps.event.addListener(marker_<%= v.id %>, 'click', function() {
+						  infowindow_<%= v.id %>.open(map,marker_<%= v.id %>);
+						});
+				<% end %>
+
+  }
 </script>
 </head>
 <body onload="initialize()">
   <div id="map_canvas" style="width:80%; height:80%"></div>
+	<%= link_to 'Add A New Venue', new_venue_path %>
 </body>
 </html>
 </body>

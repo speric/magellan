@@ -1,0 +1,14 @@
+<% form_for @venue, :url => venues_path do |f| %>
+	<%= f.error_messages %>
+	<p>
+		<%= f.label :name %>
+		<%= f.text_field :name, :size => 35 %><br />
+	</p>
+	
+	<p>
+		<%= f.label :address %>
+		<%= f.text_field :address, :size => 35 %><br />
+	</p>
+	
+	<%= submit_tag "Create" %>
+<% end %>

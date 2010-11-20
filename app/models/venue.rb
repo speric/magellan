@@ -7,6 +7,7 @@ class Venue < ActiveRecord::Base
   validates_presence_of :address
   
   def after_create
-    self.longlat = MultiGeocoder.geocode(self.address).ll
+    self.latlong = MultiGeocoder.geocode(self.address).ll
+    self.save
   end
 end
