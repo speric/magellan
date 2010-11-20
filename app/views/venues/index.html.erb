@@ -14,7 +14,7 @@
 					      map: map, 
 					      title:"<%= v.name %>"
 					  });
-						var contentString_<%= v.id %> = "<%= v.name %><br/><%= v.address %>";
+						var contentString_<%= v.id %> = "<a href=\"/venues/<%= v.id %>\"><%= v.name %></a>";
 						var infowindow_<%= v.id %> = new google.maps.InfoWindow({
 						    content: contentString_<%= v.id %>
 						});

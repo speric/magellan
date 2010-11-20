@@ -1,0 +1,38 @@
+<script type="text/javascript">
+  function initialize() {
+    var latlng = new google.maps.LatLng(<%= @venue.latlong %>);
+    var myOptions = {
+      zoom: 15,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+		var latlong_<%= @venue.id %> = new google.maps.LatLng(<%= @venue.latlong %>);
+		var marker_<%= @venue.id %> = new google.maps.Marker({
+					    	position: latlong_<%= @venue.id %>, 
+					      map: map, 
+					      title:"<%= @venue.name %>"
+						});
+						var contentString_<%= @venue.id %> = "<a href=\"/venues/<%= @venue.id %>\"><%= @venue.name %></a>";
+						var infowindow_<%= @venue.id %> = new google.maps.InfoWindow({
+						    content: contentString_<%= @venue.id %>
+						});
+
+		google.maps.event.addListener(marker_<%= @venue.id %>, 'click', function() {
+			infowindow_<%= @venue.id %>.open(map,marker_<%= @venue.id %>);
+		});
+  }
+</script>
+
+<div>
+	<div style="float: left; width: 500px;">
+		<%= link_to @venue.name, venue_path(@venue.id) %><br/>
+		<%= h @venue.address %>
+	</div>
+	<div id="map_canvas" style="width:300px; height:300px; float: left;"></div>
+	<div style="clear:both;"></div>
+</div>
+
+<script>
+	initialize();
+</script>
