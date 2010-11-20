@@ -10,5 +10,6 @@
 		<%= f.text_field :address, :size => 35 %><br />
 	</p>
 	
+	<%= f.hidden_field :user_id, {:value => @user.id} %>
 	<%= submit_tag "Create" %>
 <% end %>
