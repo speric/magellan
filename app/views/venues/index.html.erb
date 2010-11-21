@@ -1,7 +1,7 @@
 <script type="text/javascript">
   function initialize() {
-    var latlng = new google.maps.LatLng(40.810256, -73.379245);
-    var myOptions = {zoom: 11, center: latlng, mapTypeId: google.maps.MapTypeId.ROADMAP};
+    var latlng = new google.maps.LatLng(40.8285955, -73.421102);
+    var myOptions = {zoom: 12, center: latlng, mapTypeId: google.maps.MapTypeId.ROADMAP};
     var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 	<% @venues.each do |v| %>
 		var latlong_<%= v.id %> = new google.maps.LatLng(<%= v.latlong %>);

@@ -22,5 +22,6 @@ class VenuesController < ApplicationController
   
   def show
     @venue = Venue.find(params[:id])
+    @users = User.find(:all)
   end
 end

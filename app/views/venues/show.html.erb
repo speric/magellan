@@ -28,6 +28,23 @@
 	<div style="float: left; width: 500px;">
 		<%= link_to @venue.name, venue_path(@venue.id) %><br/>
 		<%= h @venue.address %>
+		<p>
+			<table cellpadding="1" cellspacing="0" border="0">
+				<tr>
+					<th>&nbsp;</th>
+					<th>Distance&nbsp;&nbsp;</th>
+					<th>Est. Commute Time&nbsp;</th>
+				</tr>
+			<% @users.each do |u| %>
+				<tr>
+					<td><%= u.name %>&nbsp;</td>
+					<td align="center"><%= number_with_precision(@venue.distance_from(u, :units => :miles), :precision => 1) %> mi.</td>
+					<td align="center"><%= number_with_precision(((@venue.distance_from(u, :units => :miles) / 50) * 60), :precision => 0) %> min.</td>
+				</tr>
+			<% end %>
+			</table>
+			<p><span style="font-size: 14px; font-style:italic;">Commute time assumes a 55 mph avg. speed</span></p>
+		</p>
 	</div>
 	<div id="map_canvas" style="width:300px; height:300px; float: left;"></div>
 	<div style="clear:both;"></div>
