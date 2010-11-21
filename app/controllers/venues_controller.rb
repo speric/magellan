@@ -3,6 +3,7 @@ class VenuesController < ApplicationController
   
   def index
     @venues = Venue.find(:all)
+    @users  = User.find(:all)
   end
   
   def new

@@ -1,29 +1,28 @@
 <script type="text/javascript">
   function initialize() {
     var latlng = new google.maps.LatLng(40.810256, -73.379245);
-    var myOptions = {
-      zoom: 12,
-      center: latlng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
+    var myOptions = {zoom: 11, center: latlng, mapTypeId: google.maps.MapTypeId.ROADMAP};
     var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 	<% @venues.each do |v| %>
 		var latlong_<%= v.id %> = new google.maps.LatLng(<%= v.latlong %>);
-		var marker_<%= v.id %> = new google.maps.Marker({
-					    	position: latlong_<%= v.id %>, 
-					      map: map, 
-					      title:"<%= v.name %>"
-					  });
-						var contentString_<%= v.id %> = "<a href=\"/venues/<%= v.id %>\"><%= v.name %></a>";
-						var infowindow_<%= v.id %> = new google.maps.InfoWindow({
-						    content: contentString_<%= v.id %>
-						});
-
+		var marker_<%= v.id %> = new google.maps.Marker({position: latlong_<%= v.id %>, map: map, title:"<%= v.name %>"});
+		var contentString_<%= v.id %> = "<a href=\"/venues/<%= v.id %>\"><%= v.name %></a>";
+		var infowindow_<%= v.id %> = new google.maps.InfoWindow({content: contentString_<%= v.id %>});
 		google.maps.event.addListener(marker_<%= v.id %>, 'click', function() {
 			infowindow_<%= v.id %>.open(map,marker_<%= v.id %>);
 		});
-		<% end %>
-
+	<% end %>
+	<% @users.each do |u| %>
+		var latlong_u<%= u.id %> = new google.maps.LatLng(<%= u.latlong %>);
+		var yellowIcon_<%= u.id %> = new google.maps.MarkerImage("http://esa.ilmari.googlepages.com/markeryellow.png");
+		var point_<%= u.id %> = new GLatLng(<%= u.latlong %>);
+		var contentString_u<%= u.id %> = "<%= h u.name %><br/><%= h u.address %>";
+		var marker_u<%= u.id %> = new google.maps.Marker({position: latlong_u<%= u.id %>, map: map, title:"<%= u.name %>", icon:yellowIcon_<%= u.id %>});
+		var infowindow_u<%= u.id %> = new google.maps.InfoWindow({content: contentString_u<%= u.id %>});
+		google.maps.event.addListener(marker_u<%= u.id %>, 'click', function() {
+			infowindow_u<%= u.id %>.open(map, marker_u<%= u.id %>);
+		});
+	<% end %>	
   }
 </script>
 
