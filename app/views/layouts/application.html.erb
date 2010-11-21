@@ -31,8 +31,11 @@
 						<div id="error"><%= flash[:error] %></div>
 					<% end %>
 					
-					<%= yield @content %>
-				</div>
+					<div>
+						<%= yield @content %>
+					</div>
+					<div align="left" style="padding-top: 15px; font-size: 12px;">Powered by <a href="http://github.com/speric/magellan">magellan</a></div>
+				</div>				
 			</div>
 		</body>
 	</html>
