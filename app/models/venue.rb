@@ -4,6 +4,9 @@ class Venue < ActiveRecord::Base
   acts_as_mappable
   xss_terminate
   
+  belongs_to  :user
+  has_many    :comments
+  
   validates_presence_of :name
   validates_presence_of :address
   
