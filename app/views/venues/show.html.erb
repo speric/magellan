@@ -50,6 +50,26 @@
 	<div style="clear:both;"></div>
 </div>
 
+<div>
+	<p><%= pluralize(@venue.comments.size, 'Comment') %></p>
+	<% @venue.comments.each do |c| %>
+		<p>
+			<div style="font-size: 14px;">
+				<%= c.user.name %><br/>
+				<%= auto_link(c.content) %>
+			</div>
+		</p>
+	<% end %>
+	<p>
+		<b>Post A New Comment</b>
+		<% form_for @comment, :url => venue_comments_path(@venue.id) do |f| %>
+			<%= f.text_area :content, :cols => 40, :rows => 10 %><br/>
+			<%= f.hidden_field :venue_id, {:value => @venue.id} %>
+			<%= f.hidden_field :user_id, {:value => @user.id} %>
+			<%= submit_tag "Add Comment" %>
+		<% end %>
+	</p>
+</div>
 <script>
 	initialize();
 </script>

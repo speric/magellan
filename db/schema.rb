@@ -9,14 +9,35 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101119231146) do
+ActiveRecord::Schema.define(:version => 20101122124926) do
+
+  create_table "comments", :force => true do |t|
+    t.integer  "venue_id",   :null => false
+    t.integer  "user_id",    :null => false
+    t.text     "content",    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
+  add_index "comments", ["venue_id"], :name => "index_comments_on_venue_id"
+
+  create_table "users", :force => true do |t|
+    t.string   "email_address", :default => "", :null => false
+    t.string   "name",          :default => "", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "address",       :default => "", :null => false
+    t.string   "latlong",       :default => "", :null => false
+  end
 
   create_table "venues", :force => true do |t|
     t.string   "name",       :default => "", :null => false
     t.string   "address",    :default => "", :null => false
-    t.string   "longlat",    :default => "", :null => false
+    t.string   "latlong",    :default => "", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id",                    :null => false
   end
 
 end
