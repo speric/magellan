@@ -2,7 +2,7 @@ class VenuesController < ApplicationController
   before_filter :authorize_user
   
   def index
-    @venues = Venue.find(:all)
+    @venues = Venue.find(:all, :include => [:comments])
     @users  = User.find(:all)
   end
   

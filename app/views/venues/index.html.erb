@@ -6,7 +6,7 @@
 	<% @venues.each do |v| %>
 		var latlong_<%= v.id %> = new google.maps.LatLng(<%= v.latlong %>);
 		var marker_<%= v.id %> = new google.maps.Marker({position: latlong_<%= v.id %>, map: map, title:"<%= v.name %>"});
-		var contentString_<%= v.id %> = "<a href=\"/venues/<%= v.id %>\"><%= v.name %></a>";
+		var contentString_<%= v.id %> = "<a href=\"/venues/<%= v.id %>\"><%= v.name %></a><br/><%= pluralize(v.comments.size, 'comment') %>";
 		var infowindow_<%= v.id %> = new google.maps.InfoWindow({content: contentString_<%= v.id %>});
 		google.maps.event.addListener(marker_<%= v.id %>, 'click', function() {
 			infowindow_<%= v.id %>.open(map,marker_<%= v.id %>);
@@ -33,7 +33,9 @@
 <% @venues.each do |v| %>
 	<p>
 		<%= link_to v.name, venue_path(v.id) %><br/>
-		<%= h v.address %>
+		<%= h v.address %><br/>
+		<%= pluralize(v.comments.size, 'comment') %><br/>
+                <span style="font-size: 12px; font-style: italic;">Added by <%= h v.user.name %> <%= time_ago_in_words(v.created_at) %> ago</span>
 	</p>
 <% end %>
 <script>

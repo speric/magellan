@@ -54,8 +54,8 @@
 	<p><%= pluralize(@venue.comments.size, 'Comment') %></p>
 	<% @venue.comments.each do |c| %>
 		<p>
-			<div style="font-size: 14px;">
-				<%= c.user.name %><br/>
+			<div>
+				<b><%= c.user.name %></b> <i><%= time_ago_in_words(c.created_at) %> ago</i><br/>
 				<%= auto_link(c.content) %>
 			</div>
 		</p>
