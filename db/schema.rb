@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101122124926) do
+ActiveRecord::Schema.define(:version => 20101130010638) do
 
   create_table "comments", :force => true do |t|
     t.integer  "venue_id",   :null => false
@@ -32,12 +32,13 @@ ActiveRecord::Schema.define(:version => 20101122124926) do
   end
 
   create_table "venues", :force => true do |t|
-    t.string   "name",       :default => "", :null => false
-    t.string   "address",    :default => "", :null => false
-    t.string   "latlong",    :default => "", :null => false
+    t.string   "name",       :default => "",   :null => false
+    t.string   "address",    :default => "",   :null => false
+    t.string   "latlong",    :default => "",   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id",                    :null => false
+    t.integer  "user_id",                      :null => false
+    t.boolean  "active",     :default => true, :null => false
   end
 
 end

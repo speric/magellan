@@ -21,4 +21,8 @@ class Venue < ActiveRecord::Base
   def lng
     self.latlong.split(",")[1]
   end
+  
+  def before_destroy
+    Comment.delete_all ["venue_id = ?", self.id]
+  end
 end

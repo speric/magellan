@@ -2,7 +2,7 @@ class VenuesController < ApplicationController
   before_filter :authorize_user
   
   def index
-    @venues = Venue.find(:all, :include => [:comments])
+    @venues = Venue.find(:all, :include => [:comments, :user])
     @users  = User.find(:all)
   end
   
@@ -24,5 +24,12 @@ class VenuesController < ApplicationController
     @venue    = Venue.find(params[:id])
     @users    = User.find(:all)
     @comment  = Comment.new
+  end
+  
+  def destroy
+    @venue = Venue.find(params[:id])
+    @venue.destroy
+    flash[:notice] = "Venue deleted"
+    redirect_to venues_path
   end
 end

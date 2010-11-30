@@ -3,14 +3,14 @@
     var latlng = new google.maps.LatLng(40.8285955, -73.421102);
     var myOptions = {zoom: 12, center: latlng, mapTypeId: google.maps.MapTypeId.ROADMAP};
     var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-	<% @venues.each do |v| %>
-		var latlong_<%= v.id %> = new google.maps.LatLng(<%= v.latlong %>);
-		var marker_<%= v.id %> = new google.maps.Marker({position: latlong_<%= v.id %>, map: map, title:"<%= v.name %>"});
-		var contentString_<%= v.id %> = "<a href=\"/venues/<%= v.id %>\"><%= v.name %></a><br/><%= pluralize(v.comments.size, 'comment') %>";
-		var infowindow_<%= v.id %> = new google.maps.InfoWindow({content: contentString_<%= v.id %>});
-		google.maps.event.addListener(marker_<%= v.id %>, 'click', function() {
-			infowindow_<%= v.id %>.open(map,marker_<%= v.id %>);
-		});
+	<% @venues.select{|x| x.active}.each do |v| %>
+			var latlong_<%= v.id %> = new google.maps.LatLng(<%= v.latlong %>);
+			var marker_<%= v.id %> = new google.maps.Marker({position: latlong_<%= v.id %>, map: map, title:"<%= v.name %>"});
+			var contentString_<%= v.id %> = "<a href=\"/venues/<%= v.id %>\"><%= v.name %></a><br/><%= pluralize(v.comments.size, 'comment') %>";
+			var infowindow_<%= v.id %> = new google.maps.InfoWindow({content: contentString_<%= v.id %>});
+			google.maps.event.addListener(marker_<%= v.id %>, 'click', function() {
+				infowindow_<%= v.id %>.open(map,marker_<%= v.id %>);
+			});
 	<% end %>
 	<% @users.each do |u| %>
 		var latlong_u<%= u.id %> = new google.maps.LatLng(<%= u.latlong %>);
@@ -23,21 +23,20 @@
 			infowindow_u<%= u.id %>.open(map, marker_u<%= u.id %>);
 		});
 	<% end %>	
-    var targetAreaCoords = [
-      new google.maps.LatLng(40.843853,-73.281755),
-      new google.maps.LatLng(40.834762,-73.417025),
-      new google.maps.LatLng(40.740663,-73.431616),
-      new google.maps.LatLng(40.786949,-73.28124)
-    ];
-    var targetArea = new google.maps.Polygon({
-      paths: targetAreaCoords,
-      strokeColor: "#FF0000",
-      strokeOpacity: 0.8,
-      strokeWeight: 2,
-      fillColor: "#FF0000",
-      fillOpacity: 0.35
-    }); 
-    /*targetArea.setMap(map);*/
+  var targetAreaCoords = [
+		new google.maps.LatLng(40.836541,-73.33271),
+	  new google.maps.LatLng(40.836801,-73.425064),
+	  new google.maps.LatLng(40.777422,-73.422661),
+	  new google.maps.LatLng(40.779762,-73.33271)];
+	  
+	var targetArea = new google.maps.Polygon({
+		paths: targetAreaCoords,
+	  strokeColor: "#FF0000",
+	  strokeOpacity: 0.8,
+	  strokeWeight: 2,
+	  fillColor: "#FF0000",
+	  fillOpacity: 0.35}); 
+		targetArea.setMap(map);
   }
 </script>
 

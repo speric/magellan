@@ -69,6 +69,8 @@
 			<%= submit_tag "Add Comment" %>
 		<% end %>
 	</p>
+	
+	<p><%= button_to "Delete This Venue", venue_path(@venue.id), :method => :delete, :confirm => "Are you sure you want to delete this venue?" %></p>
 </div>
 <script>
 	initialize();
