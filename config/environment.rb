@@ -7,6 +7,7 @@ RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
 require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
+  config.logger = Logger.new("#{RAILS_ROOT}/log/magellan.#{RAILS_ENV}.log", 5, 10485760)
   config.gem "geokit"
   config.time_zone = 'UTC'
 end
