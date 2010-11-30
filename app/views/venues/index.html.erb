@@ -44,8 +44,8 @@
 
 <p><%= link_to 'Add A New Venue', new_venue_path %></p>
 
-<p><strong>Latest Comments</strong> <%= link_to 'View All', comments_path %></p>
 <div style="font-size: 12px;">
+<p><strong>Latest Comments</strong> <%= link_to '(View All)', comments_path %></p>
 <% @comments.each do |c| %>
   <p>
     <div>

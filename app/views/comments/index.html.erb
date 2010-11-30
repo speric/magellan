@@ -1,0 +1,12 @@
+<p><strong>Latest Comments</strong></p>
+<div>
+<% @comments.each do |c| %>
+  <p>
+    <div>
+      <%= c.user.name %> on <%= link_to c.venue.name, venue_path(c.id) %> <i><%= time_ago_in_words(c.created_at) %> ago</i><br/>
+      <%= auto_link(c.content) %>
+    </div>
+  </p>
+<% end %>
+</div>
+
