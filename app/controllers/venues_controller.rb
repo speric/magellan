@@ -4,6 +4,7 @@ class VenuesController < ApplicationController
   def index
     @venues = Venue.find(:all, :include => [:comments, :user])
     @users  = User.find(:all)
+    @comments = Comment.find(:all, :include => [:venue, :user], :order => "created_at desc", :limit => 15)
   end
   
   def new

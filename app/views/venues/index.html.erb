@@ -44,14 +44,31 @@
 
 <p><%= link_to 'Add A New Venue', new_venue_path %></p>
 
-<% @venues.each do |v| %>
-	<p>
-		<%= link_to v.name, venue_path(v.id) %><br/>
-		<%= h v.address %><br/>
-		<%= pluralize(v.comments.size, 'comment') %><br/>
-                <span style="font-size: 12px; font-style: italic;">Added by <%= h v.user.name %> <%= time_ago_in_words(v.created_at) %> ago</span>
-	</p>
+<p><strong>Latest Comments</strong> <%= link_to 'View All', comments_path %></p>
+<div style="font-size: 12px;">
+<% @comments.each do |c| %>
+  <p>
+    <div>
+      <%= c.user.name %> on <%= link_to c.venue.name, venue_path(c.id) %> <i><%= time_ago_in_words(c.created_at) %> ago</i><br/>
+      <%= auto_link(c.content) %>
+    </div>
+  </p>
 <% end %>
+</div>
+
+<div style="width: 100%;">
+  <% @venues.each do |v| %>
+    <div style="float: left; width: 300px; padding-right: 10px; height: 150px;">
+      <p>
+        <%= link_to v.name, venue_path(v.id) %><br/>
+        <%= h v.address %><br/>
+        <%= pluralize(v.comments.size, 'comment') %><br/>
+        <span style="font-size: 12px; font-style: italic;">Added by <%= h v.user.name %> <%= time_ago_in_words(v.created_at) %> ago</span>
+      </p>
+    </div>
+<% end %>
+<div style="clear: both;"></div>
+</div>
 <script>
 	initialize();
 </script>
