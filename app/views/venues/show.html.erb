@@ -56,7 +56,7 @@
 		<p>
 			<div>
 				<b><%= c.user.name %></b> <i><%= time_ago_in_words(c.created_at) %> ago</i><br/>
-				<%= auto_link(c.content) %>
+				<%= auto_link(RDiscount.new(c.content).to_html) %>
 			</div>
 		</p>
 	<% end %>

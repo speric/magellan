@@ -9,5 +9,6 @@ require File.join(File.dirname(__FILE__), 'boot')
 Rails::Initializer.run do |config|
   config.logger = Logger.new("#{RAILS_ROOT}/log/magellan.#{RAILS_ENV}.log", 5, 10485760)
   config.gem "geokit"
+  config.gem "rdiscount"
   config.time_zone = 'UTC'
 end
