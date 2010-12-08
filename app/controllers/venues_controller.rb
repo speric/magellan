@@ -27,6 +27,20 @@ class VenuesController < ApplicationController
     @comment  = Comment.new
   end
   
+  def edit
+    @venue = Venue.find(params[:id])
+  end
+  
+  def update
+    @venue = Venue.find(params[:id])
+    if @venue.update_attributes(params[:venue])
+      flash[:notice] = "Venue updated"
+      redirect_to venue_path(@venue.id)
+    else
+      render :action => :edit
+    end
+  end
+  
   def destroy
     @venue = Venue.find(params[:id])
     @venue.destroy

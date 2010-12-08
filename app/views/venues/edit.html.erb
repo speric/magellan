@@ -1,0 +1,35 @@
+<% form_for @venue, :url => venue_path do |f| %>
+	<%= f.error_messages %>
+	<p>
+		<%= f.label :name %><br/>
+		<%= f.text_field :name, :size => 35 %><br />
+	</p>
+	
+	<p>
+		<%= f.label :address %><br/>
+		<%= f.text_field :address, :size => 35 %><br />
+	</p>
+	
+	<p>
+		<%= f.label :phone_number %><br/>
+		<%= f.text_field :phone_number, :size => 35 %><br />
+	</p>
+	
+	<p>
+		<%= f.label :contact %><br/>
+		<%= f.text_field :contact, :size => 35 %><br />
+	</p>
+	
+	<p>
+		<%= f.label :website %><br/>
+		<%= f.text_field :website, :size => 35 %><br />
+	</p>
+	
+	<p>
+		<%= f.label :status %><br/>
+		<select name="venue[status]">
+			<%= options_for_select([["Very Likely", "Very Likely"],["Likely", "Likely"],["Extremely Unlikely", "Extremely Unlikely"]], :selected => @venue.status) %>
+		</select>
+	</p>
+	<%= submit_tag "Update" %>
+<% end %>

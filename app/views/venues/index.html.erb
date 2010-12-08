@@ -6,7 +6,7 @@
 	<% @venues.select{|x| x.active}.each do |v| %>
 			var latlong_<%= v.id %> = new google.maps.LatLng(<%= v.latlong %>);
 			var marker_<%= v.id %> = new google.maps.Marker({position: latlong_<%= v.id %>, map: map, title:"<%= v.name %>"});
-			var contentString_<%= v.id %> = "<a href=\"/venues/<%= v.id %>\"><%= v.name %></a><br/><%= pluralize(v.comments.size, 'comment') %>";
+			var contentString_<%= v.id %> = "<a href=\"/venues/<%= v.id %>\"><%= v.name %></a><br/>Status: <%= h v.status %><br/><%= pluralize(v.comments.size, 'comment') %>";
 			var infowindow_<%= v.id %> = new google.maps.InfoWindow({content: contentString_<%= v.id %>});
 			google.maps.event.addListener(marker_<%= v.id %>, 'click', function() {
 				infowindow_<%= v.id %>.open(map,marker_<%= v.id %>);
