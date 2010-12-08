@@ -28,10 +28,10 @@
 	<div style="float: left; width: 500px;">
 		<%= link_to @venue.name, venue_path(@venue.id) %><br/>
 		<%= h @venue.address %><br/>
-		Phone Number: <%= h @venue.phone_number %><br/>
-		Contact: <%= h @venue.contact %><br/>
-		Website: <%= h auto_link(@venue.website) %><br/>
-		<b>Status: <%= h @venue.status %></b>
+		<b>Phone Number:</b> <%= h @venue.phone_number %><br/>
+		<b>Contact:</b> <%= @venue.contact %><br/>
+		<b>Website:</b> <%= auto_link(@venue.website) %><br/>
+		<b>Status:</b> <%= h @venue.status %>
 		<p><%= link_to 'Edit', edit_venue_path(@venue.id) %></p>
 		<p>
 			<table cellpadding="1" cellspacing="0" border="0">
